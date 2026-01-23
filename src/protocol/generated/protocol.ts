@@ -24,6 +24,19 @@ export namespace Protocol {
         state: number;
         publishState: number;
     }
+
+    export interface ModuleReference {
+        id: string;
+        name: string;
+        typeId?: string;
+    }
+
+    export interface ModuleState {
+        deployable: DeployableReference;
+        module: ModuleReference;
+        state: number;
+        publishState: number;
+    }
     
     export interface CreateServerResponse {
         status: Status;
@@ -42,6 +55,7 @@ export namespace Protocol {
         publishState: number;
         runMode: string;
         deployableStates: DeployableState[];
+        moduleStates?: ModuleState[];
     }
     
     export interface ClientCapabilitiesRequest {
@@ -131,6 +145,25 @@ export namespace Protocol {
     export interface ListDeployablesResponse {
         states: DeployableState[];
         status: Status;
+    }
+
+    export interface ListDeployableResourcesResponse {
+        resources: DeployableReference[];
+        status: Status;
+    }
+
+    export interface WorkspaceFolder {
+        uri: string;
+        name?: string;
+    }
+
+    export interface WorkspaceFoldersChangeEvent {
+        added: WorkspaceFolder[];
+        removed: WorkspaceFolder[];
+    }
+
+    export interface DidChangeWorkspaceFoldersParams {
+        event: WorkspaceFoldersChangeEvent;
     }
     
     export interface WorkflowResponseItem {

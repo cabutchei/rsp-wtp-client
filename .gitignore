@@ -5,3 +5,4 @@ lib
 .nyc*
 coverage
 *.tgz
+.DS_Store

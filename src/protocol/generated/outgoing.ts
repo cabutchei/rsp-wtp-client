@@ -163,6 +163,13 @@ export class Outgoing {
         return Common.sendSimpleRequest(this.connection, Messages.Server.CancelJobRequest.type,
             param, timeout, ErrorMessages.CANCELJOB_TIMEOUT);
     }
+    getDeployableResources(timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListDeployableResourcesResponse> {
+        return Common.sendSimpleRequest(this.connection, Messages.Workspace.GetDeployableResourcesRequest.type,
+            null, timeout, ErrorMessages.GETDEPLOYABLERESOURCES_TIMEOUT);
+    }
+    didChangeWorkspaceFolders(param: Protocol.DidChangeWorkspaceFoldersParams, timeout: number = Common.DEFAULT_TIMEOUT): void {
+        return Common.sendSimpleNotification(this.connection, Messages.Workspace.DidChangeWorkspaceFoldersNotification.type, param);
+    }
 }
 /**
  * Error messages
@@ -205,4 +212,5 @@ export namespace ErrorMessages {
     export const EXECUTESERVERACTION_TIMEOUT = 'Failed to execute server action in time';
     export const GETJOBS_TIMEOUT = 'Failed to get jobs in time';
     export const CANCELJOB_TIMEOUT = 'Failed to cancel job in time';
+    export const GETDEPLOYABLERESOURCES_TIMEOUT = 'Failed to get deployable resources in time';
 }

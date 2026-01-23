@@ -377,6 +377,25 @@ export namespace Messages {
         }
     }
     /**
+     * Workspace methods
+     */
+    export namespace Workspace {
+        /**
+         * The `workspace/getDeployableResources` request is sent by the client to
+         * fetch a list of deployable resources from the current workspace.
+         */
+        export namespace GetDeployableResourcesRequest {
+            export const type = new RequestType<void, Protocol.ListDeployableResourcesResponse, void, void>('workspace/getDeployableResources');
+        }
+        /**
+         * The `workspace/didChangeWorkspaceFolders` notification is sent by the client
+         * to inform the server about added or removed workspace folders.
+         */
+        export namespace DidChangeWorkspaceFoldersNotification {
+            export const type = new NotificationType<Protocol.DidChangeWorkspaceFoldersParams, void>('workspace/didChangeWorkspaceFolders');
+        }
+    }
+    /**
      * Client methods
      */
     export namespace Client {
