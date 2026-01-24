@@ -115,6 +115,18 @@ export class Outgoing {
         return Common.sendSimpleRequest(this.connection, Messages.Server.StopServerAsyncRequest.type,
             param, timeout, ErrorMessages.STOPSERVERASYNC_TIMEOUT);
     }
+    startModule(param: Protocol.ServerDeployableReference, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.Status> {
+        return Common.sendSimpleRequest(this.connection, Messages.Server.StartModuleRequest.type,
+            param, timeout, ErrorMessages.STARTMODULE_TIMEOUT);
+    }
+    stopModule(param: Protocol.ServerDeployableReference, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.Status> {
+        return Common.sendSimpleRequest(this.connection, Messages.Server.StopModuleRequest.type,
+            param, timeout, ErrorMessages.STOPMODULE_TIMEOUT);
+    }
+    getModuleStates(param: Protocol.ServerHandle, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Array<Protocol.ModuleState>> {
+        return Common.sendSimpleRequest(this.connection, Messages.Server.GetModuleStatesRequest.type,
+            param, timeout, ErrorMessages.GETMODULESTATES_TIMEOUT);
+    }
     getDeployables(param: Protocol.ServerHandle, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListDeployablesResponse> {
         return Common.sendSimpleRequest(this.connection, Messages.Server.GetDeployablesRequest.type,
             param, timeout, ErrorMessages.GETDEPLOYABLES_TIMEOUT);
@@ -200,6 +212,9 @@ export namespace ErrorMessages {
     export const GETSERVERSTATE_TIMEOUT = 'Failed to get server state in time';
     export const STARTSERVERASYNC_TIMEOUT = 'Failed to start server async in time';
     export const STOPSERVERASYNC_TIMEOUT = 'Failed to stop server async in time';
+    export const STARTMODULE_TIMEOUT = 'Failed to start module in time';
+    export const STOPMODULE_TIMEOUT = 'Failed to stop module in time';
+    export const GETMODULESTATES_TIMEOUT = 'Failed to get module states in time';
     export const GETDEPLOYABLES_TIMEOUT = 'Failed to get deployables in time';
     export const LISTDEPLOYMENTOPTIONS_TIMEOUT = 'Failed to list deployment options in time';
     export const ADDDEPLOYABLE_TIMEOUT = 'Failed to add deployable in time';

@@ -269,6 +269,27 @@ export namespace Messages {
             export const type = new RequestType<Protocol.StopServerAttributes, Protocol.Status, void, void>('server/stopServerAsync');
         }
         /**
+         * The `server/startModule` request is sent by the client to the server to
+         * start a module on an existing server.
+         */
+        export namespace StartModuleRequest {
+            export const type = new RequestType<Protocol.ServerDeployableReference, Protocol.Status, void, void>('server/startModule');
+        }
+        /**
+         * The `server/stopModule` request is sent by the client to the server to
+         * stop a module on an existing server.
+         */
+        export namespace StopModuleRequest {
+            export const type = new RequestType<Protocol.ServerDeployableReference, Protocol.Status, void, void>('server/stopModule');
+        }
+        /**
+         * The `server/getModuleStates` request is sent by the client to the server to
+         * get a list of all module states for the given server.
+         */
+        export namespace GetModuleStatesRequest {
+            export const type = new RequestType<Protocol.ServerHandle, Array<Protocol.ModuleState>, void, void>('server/getModuleStates');
+        }
+        /**
          * The `server/getDeployables` request is sent by the client to the server to
          * get a list of all deployables
          */
