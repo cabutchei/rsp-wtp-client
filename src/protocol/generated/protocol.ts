@@ -152,6 +152,40 @@ export namespace Protocol {
         status: Status;
     }
 
+    export interface DeploymentAssemblyEntry {
+        sourcePath: string;
+        deployPath: string;
+        sourceKind?: string;
+        deployKind?: string;
+    }
+
+    export interface DeploymentAssemblyResponse {
+        entries: DeploymentAssemblyEntry[];
+        status: Status;
+    }
+
+    export interface DeploymentAssemblyRequest {
+        path: string;
+        projectName?: string;
+    }
+
+    export interface DeploymentAssemblyUpdateRequest {
+        path: string;
+        projectName?: string;
+        entry: DeploymentAssemblyEntry;
+    }
+
+    export interface WorkspaceProject {
+        name: string;
+        path: string;
+        open: boolean;
+    }
+
+    export interface ListWorkspaceProjectsResponse {
+        projects: WorkspaceProject[];
+        status: Status;
+    }
+
     export interface WorkspaceFolder {
         uri: string;
         name?: string;

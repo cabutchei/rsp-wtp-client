@@ -409,6 +409,34 @@ export namespace Messages {
             export const type = new RequestType<void, Protocol.ListDeployableResourcesResponse, void, void>('workspace/getDeployableResources');
         }
         /**
+         * The `workspace/listWorkspaceProjects` request is sent by the client to
+         * fetch a list of known workspace projects.
+         */
+        export namespace ListWorkspaceProjectsRequest {
+            export const type = new RequestType<void, Protocol.ListWorkspaceProjectsResponse, void, void>('workspace/listWorkspaceProjects');
+        }
+        /**
+         * The `workspace/getDeploymentAssembly` request is sent by the client to
+         * fetch the deployment assembly mappings for a workspace project.
+         */
+        export namespace GetDeploymentAssemblyRequest {
+            export const type = new RequestType<Protocol.DeploymentAssemblyRequest, Protocol.DeploymentAssemblyResponse, void, void>('workspace/getDeploymentAssembly');
+        }
+        /**
+         * The `workspace/addDeploymentAssemblyEntry` request is sent by the client to
+         * add a new deployment assembly entry.
+         */
+        export namespace AddDeploymentAssemblyEntryRequest {
+            export const type = new RequestType<Protocol.DeploymentAssemblyUpdateRequest, Protocol.Status, void, void>('workspace/addDeploymentAssemblyEntry');
+        }
+        /**
+         * The `workspace/removeDeploymentAssemblyEntry` request is sent by the client to
+         * remove an existing deployment assembly entry.
+         */
+        export namespace RemoveDeploymentAssemblyEntryRequest {
+            export const type = new RequestType<Protocol.DeploymentAssemblyUpdateRequest, Protocol.Status, void, void>('workspace/removeDeploymentAssemblyEntry');
+        }
+        /**
          * The `workspace/didChangeWorkspaceFolders` notification is sent by the client
          * to inform the server about added or removed workspace folders.
          */
