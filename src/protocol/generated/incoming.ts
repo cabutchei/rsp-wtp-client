@@ -37,6 +37,10 @@ export class Incoming {
             this.emitter.emit('discoveryPathRemoved', param);
         });
 
+        this.connection.onNotification(Messages.Client.JdtlsJreContainersDetectedNotification.type, param => {
+            this.emitter.emit('jdtlsJreContainersDetected', param);
+        });
+
         this.connection.onNotification(Messages.Client.ServerAddedNotification.type, param => {
             this.emitter.emit('serverAdded', param);
         });
@@ -105,6 +109,14 @@ export class Incoming {
 
     removeOnDiscoveryPathRemoved(listener: (arg: Protocol.DiscoveryPath) => void): void {
         this.emitter.removeListener('discoveryPathRemoved', listener);
+    }
+
+    onJdtlsJreContainersDetected(listener: (arg: Protocol.JreContainerMappings) => void): void {
+        this.emitter.on('jdtlsJreContainersDetected', listener);
+    }
+
+    removeOnJdtlsJreContainersDetected(listener: (arg: Protocol.JreContainerMappings) => void): void {
+        this.emitter.removeListener('jdtlsJreContainersDetected', listener);
     }
 
     onServerAdded(listener: (arg: Protocol.ServerHandle) => void): void {

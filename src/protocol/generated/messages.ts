@@ -484,6 +484,13 @@ export namespace Messages {
             export const type = new NotificationType<Protocol.DiscoveryPath, void>('client/discoveryPathRemoved');
         }
         /**
+         * The `client/jdtlsJreContainersDetected` notification is sent by the server
+         * when non-standard JRE containers are detected and resolved to VM installs.
+         */
+        export namespace JdtlsJreContainersDetectedNotification {
+            export const type = new NotificationType<Protocol.JreContainerMappings, void>('client/jdtlsJreContainersDetected');
+        }
+        /**
          * The `client/serverAdded` notification is sent by the server to all clients in
          * a response to the `server/createServer` notification.
          *

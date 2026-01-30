@@ -181,6 +181,18 @@ export namespace Protocol {
         open: boolean;
     }
 
+    export interface JreContainerMapping {
+        projectName: string;
+        projectUri: string;
+        containerPath: string;
+        vmName: string;
+        javaHome: string;
+    }
+
+    export interface JreContainerMappings {
+        mappings: JreContainerMapping[];
+    }
+
     export interface ListWorkspaceProjectsResponse {
         projects: WorkspaceProject[];
         status: Status;
