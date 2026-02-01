@@ -175,13 +175,17 @@ export class Outgoing {
         return Common.sendSimpleRequest(this.connection, Messages.Server.CancelJobRequest.type,
             param, timeout, ErrorMessages.CANCELJOB_TIMEOUT);
     }
-    getDeployableResources(timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListDeployableResourcesResponse> {
+    getDeployableResources(param: Protocol.ServerHandle, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListDeployableResourcesResponse> {
         return Common.sendSimpleRequest(this.connection, Messages.Workspace.GetDeployableResourcesRequest.type,
-            null, timeout, ErrorMessages.GETDEPLOYABLERESOURCES_TIMEOUT);
+            param, timeout, ErrorMessages.GETDEPLOYABLERESOURCES_TIMEOUT);
     }
     listWorkspaceProjects(timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListWorkspaceProjectsResponse> {
         return Common.sendSimpleRequest(this.connection, Messages.Workspace.ListWorkspaceProjectsRequest.type,
             null, timeout, ErrorMessages.LISTWORKSPACEPROJECTS_TIMEOUT);
+    }
+    listDeploymentAssemblyProjects(param: Protocol.DeploymentAssemblyRequest, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListWorkspaceProjectsResponse> {
+        return Common.sendSimpleRequest(this.connection, Messages.Workspace.ListDeploymentAssemblyProjectsRequest.type,
+            param, timeout, ErrorMessages.LISTDEPLOYMENTASSEMBLYPROJECTS_TIMEOUT);
     }
     getDeploymentAssembly(param: Protocol.DeploymentAssemblyRequest, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.DeploymentAssemblyResponse> {
         return Common.sendSimpleRequest(this.connection, Messages.Workspace.GetDeploymentAssemblyRequest.type,
@@ -245,6 +249,7 @@ export namespace ErrorMessages {
     export const CANCELJOB_TIMEOUT = 'Failed to cancel job in time';
     export const GETDEPLOYABLERESOURCES_TIMEOUT = 'Failed to get deployable resources in time';
     export const LISTWORKSPACEPROJECTS_TIMEOUT = 'Failed to list workspace projects in time';
+    export const LISTDEPLOYMENTASSEMBLYPROJECTS_TIMEOUT = 'Failed to list deployment assembly projects in time';
     export const GETDEPLOYMENTASSEMBLY_TIMEOUT = 'Failed to get deployment assembly in time';
     export const ADDDEPLOYMENTASSEMBLYENTRY_TIMEOUT = 'Failed to add deployment assembly entry in time';
     export const REMOVEDEPLOYMENTASSEMBLYENTRY_TIMEOUT = 'Failed to remove deployment assembly entry in time';

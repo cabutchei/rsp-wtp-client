@@ -406,7 +406,7 @@ export namespace Messages {
          * fetch a list of deployable resources from the current workspace.
          */
         export namespace GetDeployableResourcesRequest {
-            export const type = new RequestType<void, Protocol.ListDeployableResourcesResponse, void, void>('workspace/getDeployableResources');
+            export const type = new RequestType<Protocol.ServerHandle, Protocol.ListDeployableResourcesResponse, void, void>('workspace/getDeployableResources');
         }
         /**
          * The `workspace/listWorkspaceProjects` request is sent by the client to
@@ -414,6 +414,13 @@ export namespace Messages {
          */
         export namespace ListWorkspaceProjectsRequest {
             export const type = new RequestType<void, Protocol.ListWorkspaceProjectsResponse, void, void>('workspace/listWorkspaceProjects');
+        }
+        /**
+         * The `workspace/listDeploymentAssemblyProjects` request is sent by the client to
+         * fetch a filtered list of projects that can be added to a deployment assembly.
+         */
+        export namespace ListDeploymentAssemblyProjectsRequest {
+            export const type = new RequestType<Protocol.DeploymentAssemblyRequest, Protocol.ListWorkspaceProjectsResponse, void, void>('workspace/listDeploymentAssemblyProjects');
         }
         /**
          * The `workspace/getDeploymentAssembly` request is sent by the client to
