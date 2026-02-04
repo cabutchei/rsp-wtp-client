@@ -37,7 +37,7 @@ export class Incoming {
             this.emitter.emit('discoveryPathRemoved', param);
         });
 
-        this.connection.onNotification(Messages.Client.JdtlsJreContainersDetectedNotification.type, param => {
+        this.connection.onNotification(Messages.WTPClient.JdtlsJreContainersDetectedNotification.type, param => {
             this.emitter.emit('jdtlsJreContainersDetected', param);
         });
 

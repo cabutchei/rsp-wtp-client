@@ -1,7 +1,7 @@
 {
-  "name": "rsp-client",
-  "version": "0.25.0",
-  "description": "Client Implementation of Runtime Server Protocol",
+  "name": "rsp-wtp-client",
+  "version": "0.1.0",
+  "description": "Client Implementation of Runtime Server Protocol extended with WTP capabilities",
   "main": "lib/src/main.js",
   "types": "lib/src/main.d.ts",
   "files": [
@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/redhat-developer/rsp-client.git"
+    "url": "git+https://github.com/cabutchei/rsp-wtp-client.git"
   },
   "keywords": [
     "runtime",
@@ -48,12 +48,12 @@
     "adapters",
     "protocol"
   ],
-  "author": "Red Hat Developers",
+  "author": "cabutchei",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/redhat-developer/rsp-client/issues"
+    "url": "https://github.com/cabutchei/rsp-wtp-client/issues"
   },
-  "homepage": "https://github.com/redhat-developer/rsp-client#readme",
+  "homepage": "https://github.com/cabutchei/rsp-wtp-client#readme",
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.6",

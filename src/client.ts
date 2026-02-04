@@ -6,13 +6,14 @@ import { ServerCreation } from './util/serverCreation';
 import { EventEmitter } from 'events';
 import { Incoming } from './protocol/generated/incoming';
 import { Outgoing } from './protocol/generated/outgoing';
+import { OutgoingWTP } from './protocol/generated/outgoing-wtp';
 import { OutgoingSynchronous } from './util/outgoingsync';
 import { Common } from './util/common';
 
 /**
- * Runtime Server Protocol client implementation using JSON RPC
+ * Runtime Server Protocol and WTP client implementation using JSON RPC
  */
-export class RSPClient {
+export class RSPWTPClient {
 
     private host: string;
     private port: number;
@@ -23,10 +24,11 @@ export class RSPClient {
 
     private incoming: Incoming;
     private outgoing: Outgoing;
+    private outgoingWTP: OutgoingWTP;
     private outgoingSync: OutgoingSynchronous;
 
     /**
-     * Constructs a new RSP client
+     * Constructs a new RSP WTP client
      * @param host hostname/address to connect to
      * @param port port of the running RSP service
      */
@@ -66,6 +68,7 @@ export class RSPClient {
 
                 this.incoming = new Incoming(this.connection, this.emitter);
                 this.outgoing = new Outgoing(this.connection);
+                this.outgoingWTP = new OutgoingWTP(this.connection);
                 this.outgoingSync = new OutgoingSynchronous(this.connection, this.emitter);
                 clearTimeout(timer);
                 resolve();
@@ -73,14 +76,13 @@ export class RSPClient {
         });
     }
 
-    onConnectionClosed(listener: (arg: RSPClient) => void): void {
+    onConnectionClosed(listener: (arg: RSPWTPClient) => void): void {
         this.emitter.on('connectionClosed', listener);
     }
 
-    removeOnConnectionClosed(listener: (arg: RSPClient) => void): void {
+    removeOnConnectionClosed(listener: (arg: RSPWTPClient) => void): void {
         this.emitter.removeListener('connectionClosed', listener);
     }
-
 
     /**
      * Terminates an existing connection
@@ -111,6 +113,10 @@ export class RSPClient {
 
     getOutgoingHandler(): Outgoing {
         return this.outgoing;
+    }
+
+    getOutgoingWTPHandler(): OutgoingWTP {
+        return this.outgoingWTP;
     }
 
     getOutgoingSyncHandler(): OutgoingSynchronous {

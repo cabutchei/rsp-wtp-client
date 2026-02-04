@@ -269,27 +269,6 @@ export namespace Messages {
             export const type = new RequestType<Protocol.StopServerAttributes, Protocol.Status, void, void>('server/stopServerAsync');
         }
         /**
-         * The `server/startModule` request is sent by the client to the server to
-         * start a module on an existing server.
-         */
-        export namespace StartModuleRequest {
-            export const type = new RequestType<Protocol.ServerDeployableReference, Protocol.Status, void, void>('server/startModule');
-        }
-        /**
-         * The `server/stopModule` request is sent by the client to the server to
-         * stop a module on an existing server.
-         */
-        export namespace StopModuleRequest {
-            export const type = new RequestType<Protocol.ServerDeployableReference, Protocol.Status, void, void>('server/stopModule');
-        }
-        /**
-         * The `server/getModuleStates` request is sent by the client to the server to
-         * get a list of all module states for the given server.
-         */
-        export namespace GetModuleStatesRequest {
-            export const type = new RequestType<Protocol.ServerHandle, Array<Protocol.ModuleState>, void, void>('server/getModuleStates');
-        }
-        /**
          * The `server/getDeployables` request is sent by the client to the server to
          * get a list of all deployables
          */
@@ -397,58 +376,76 @@ export namespace Messages {
             export const type = new RequestType<Protocol.JobHandle, Protocol.Status, void, void>('server/cancelJob');
         }
     }
-    /**
-     * Workspace methods
-     */
-    export namespace Workspace {
+    export namespace WTPServer {
         /**
-         * The `workspace/getDeployableResources` request is sent by the client to
+         * The `wtpServer/getDeployableResources` request is sent by the client to
          * fetch a list of deployable resources from the current workspace.
          */
         export namespace GetDeployableResourcesRequest {
-            export const type = new RequestType<Protocol.ServerHandle, Protocol.ListDeployableResourcesResponse, void, void>('workspace/getDeployableResources');
+            export const type = new RequestType<Protocol.ServerHandle, Protocol.ListDeployableResourcesResponse, void, void>('wtpServer/getDeployableResources');
         }
         /**
-         * The `workspace/listWorkspaceProjects` request is sent by the client to
+         * The `wtpServer/listWorkspaceProjects` request is sent by the client to
          * fetch a list of known workspace projects.
          */
         export namespace ListWorkspaceProjectsRequest {
-            export const type = new RequestType<void, Protocol.ListWorkspaceProjectsResponse, void, void>('workspace/listWorkspaceProjects');
+            export const type = new RequestType<void, Protocol.ListWorkspaceProjectsResponse, void, void>('wtpServer/listWorkspaceProjects');
         }
         /**
-         * The `workspace/listDeploymentAssemblyProjects` request is sent by the client to
+         * The `wtpServer/listDeploymentAssemblyProjects` request is sent by the client to
          * fetch a filtered list of projects that can be added to a deployment assembly.
          */
         export namespace ListDeploymentAssemblyProjectsRequest {
-            export const type = new RequestType<Protocol.DeploymentAssemblyRequest, Protocol.ListWorkspaceProjectsResponse, void, void>('workspace/listDeploymentAssemblyProjects');
+            export const type = new RequestType<Protocol.DeploymentAssemblyRequest, Protocol.ListWorkspaceProjectsResponse, void, void>('wtpServer/listDeploymentAssemblyProjects');
         }
         /**
-         * The `workspace/getDeploymentAssembly` request is sent by the client to
+         * The `wtpServer/getDeploymentAssembly` request is sent by the client to
          * fetch the deployment assembly mappings for a workspace project.
          */
         export namespace GetDeploymentAssemblyRequest {
-            export const type = new RequestType<Protocol.DeploymentAssemblyRequest, Protocol.DeploymentAssemblyResponse, void, void>('workspace/getDeploymentAssembly');
+            export const type = new RequestType<Protocol.DeploymentAssemblyRequest, Protocol.DeploymentAssemblyResponse, void, void>('wtpServer/getDeploymentAssembly');
         }
         /**
-         * The `workspace/addDeploymentAssemblyEntry` request is sent by the client to
+         * The `wtpServer/addDeploymentAssemblyEntry` request is sent by the client to
          * add a new deployment assembly entry.
          */
         export namespace AddDeploymentAssemblyEntryRequest {
-            export const type = new RequestType<Protocol.DeploymentAssemblyUpdateRequest, Protocol.Status, void, void>('workspace/addDeploymentAssemblyEntry');
+            export const type = new RequestType<Protocol.DeploymentAssemblyUpdateRequest, Protocol.Status, void, void>('wtpServer/addDeploymentAssemblyEntry');
         }
         /**
-         * The `workspace/removeDeploymentAssemblyEntry` request is sent by the client to
+         * The `wtpServer/removeDeploymentAssemblyEntry` request is sent by the client to
          * remove an existing deployment assembly entry.
          */
         export namespace RemoveDeploymentAssemblyEntryRequest {
-            export const type = new RequestType<Protocol.DeploymentAssemblyUpdateRequest, Protocol.Status, void, void>('workspace/removeDeploymentAssemblyEntry');
+            export const type = new RequestType<Protocol.DeploymentAssemblyUpdateRequest, Protocol.Status, void, void>('wtpServer/removeDeploymentAssemblyEntry');
         }
         /**
-         * The `workspace/didChangeWorkspaceFolders` notification is sent by the client
+         * The `wtpServer/didChangeWorkspaceFolders` notification is sent by the client
          * to inform the server about added or removed workspace folders.
          */
         export namespace DidChangeWorkspaceFoldersNotification {
-            export const type = new NotificationType<Protocol.DidChangeWorkspaceFoldersParams, void>('workspace/didChangeWorkspaceFolders');
+            export const type = new NotificationType<Protocol.DidChangeWorkspaceFoldersParams, void>('wtpServer/didChangeWorkspaceFolders');
+        }
+        /**
+         * The `wtpServer/startModule` request is sent by the client to the server to
+         * start a module on an existing server.
+         */
+        export namespace StartModuleRequest {
+            export const type = new RequestType<Protocol.ServerDeployableReference, Protocol.Status, void, void>('server/startModule');
+        }
+        /**
+         * The `wtpServer/stopModule` request is sent by the client to the server to
+         * stop a module on an existing server.
+         */
+        export namespace StopModuleRequest {
+            export const type = new RequestType<Protocol.ServerDeployableReference, Protocol.Status, void, void>('server/stopModule');
+        }
+        /**
+         * The `wtpServer/getModuleStates` request is sent by the client to the server to
+         * get a list of all module states for the given server.
+         */
+        export namespace GetModuleStatesRequest {
+            export const type = new RequestType<Protocol.ServerHandle, Array<Protocol.ModuleState>, void, void>('server/getModuleStates');
         }
     }
     /**
@@ -489,13 +486,6 @@ export namespace Messages {
          */
         export namespace DiscoveryPathRemovedNotification {
             export const type = new NotificationType<Protocol.DiscoveryPath, void>('client/discoveryPathRemoved');
-        }
-        /**
-         * The `client/jdtlsJreContainersDetected` notification is sent by the server
-         * when non-standard JRE containers are detected and resolved to VM installs.
-         */
-        export namespace JdtlsJreContainersDetectedNotification {
-            export const type = new NotificationType<Protocol.JreContainerMappings, void>('client/jdtlsJreContainersDetected');
         }
         /**
          * The `client/serverAdded` notification is sent by the server to all clients in
@@ -608,6 +598,18 @@ export namespace Messages {
          */
         export namespace JobChangedNotification {
             export const type = new NotificationType<Protocol.JobProgress, void>('client/jobChanged');
+        }
+    }
+    /**
+     * WTP Client methods
+     */
+    export namespace WTPClient {
+        /**
+         * The `client/jdtlsJreContainersDetected` notification is sent by the server
+         * when non-standard JRE containers are detected and resolved to VM installs.
+         */
+        export namespace JdtlsJreContainersDetectedNotification {
+            export const type = new NotificationType<Protocol.JreContainerMappings, void>('wtpClient/jdtlsJreContainersDetected');
         }
     }
 }

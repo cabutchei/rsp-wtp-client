@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
-import { RSPClient } from '../src/client';
+import { RSPWTPClient } from '../src/client';
 import * as net from 'net';
 import * as rpc from 'vscode-jsonrpc';
 import 'mocha';
@@ -15,7 +15,7 @@ describe('RSP Client', () => {
     const host = 'testhost';
     const port = 9001;
     let sandbox: sinon.SinonSandbox;
-    let client: RSPClient;
+    let client: RSPWTPClient;
     let rpcStub: sinon.SinonStub;
     let connectStub: sinon.SinonStub;
     let readerStub: sinon.SinonStub;
@@ -38,7 +38,7 @@ describe('RSP Client', () => {
     };
 
     beforeEach(() => {
-        client = new RSPClient(host, port);
+        client = new RSPWTPClient(host, port);
         fakeSocket = new net.Socket();
 
         sandbox = sinon.createSandbox();
@@ -77,7 +77,7 @@ describe('RSP Client', () => {
                 client.disconnect();
                 expect.fail('Disconnect did not throw without existing connection');
             } catch (err) {
-                expect(err.message).equals('Connection not initialized');
+                expect((err as Error).message).equals('Connection not initialized');
             }
         });
 

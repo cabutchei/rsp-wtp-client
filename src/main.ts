@@ -4,5 +4,6 @@ export * from './protocol/generated/serverState';
 export * from './util/statusSeverity';
 export * from './protocol/generated/incoming';
 export * from './protocol/generated/outgoing';
+export * from './protocol/generated/outgoing-wtp';
 export * from './util/outgoingsync';
 export * from './util/serverCreation';
