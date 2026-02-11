@@ -45,15 +45,18 @@ export class RSPWTPClient {
      */
     connect(timeout: number = Common.DEFAULT_TIMEOUT): Promise<void> {
         return new Promise((resolve, reject) => {
+            console.debug(`RSPWTPClient: connecting to ${this.host}:${this.port}`);
             const timer = setTimeout(() => {
                 return reject(new Error(`Failed to establish connection to ${this.host}:${this.port} within time`));
             }, timeout);
 
             this.socket = net.connect(this.port, this.host);
             this.socket.on('close', () => {
+                console.debug(`RSPWTPClient: socket closed ${this.socket && this.socket.remoteAddress}:${this.socket && this.socket.remotePort}`);
                 this.emitter.emit('connectionClosed');
             });
             this.socket.on('connect', () => {
+                console.debug(`RSPWTPClient: socket connected ${this.socket.remoteAddress}:${this.socket.remotePort}`);
                 this.connection = rpc.createMessageConnection(
                     new rpc.StreamMessageReader(this.socket),
                     new rpc.StreamMessageWriter(this.socket));

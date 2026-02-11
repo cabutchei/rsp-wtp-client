@@ -193,6 +193,27 @@ export namespace Protocol {
         mappings: JreContainerMapping[];
     }
 
+    export interface ClasspathContainerEntry {
+        entryKind: number;
+        path: string;
+        sourcePath?: string;
+        sourceRootPath?: string;
+        javadocLocation?: string;
+        exported: boolean;
+    }
+
+    export interface ClasspathContainerMapping {
+        projectName: string;
+        projectUri: string;
+        containerPath: string;
+        description?: string;
+        entries: ClasspathContainerEntry[];
+    }
+
+    export interface ClasspathContainerMappings {
+        mappings: ClasspathContainerMapping[];
+    }
+
     export interface ListWorkspaceProjectsResponse {
         projects: WorkspaceProject[];
         status: Status;
@@ -235,6 +256,7 @@ export namespace Protocol {
     export interface DeployableReference {
         label: string;
         path: string;
+        typeId?: string;
         options?: { [index: string]: any };
     }
     

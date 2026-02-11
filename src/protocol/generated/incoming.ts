@@ -41,6 +41,10 @@ export class Incoming {
             this.emitter.emit('jdtlsJreContainersDetected', param);
         });
 
+        this.connection.onNotification(Messages.WTPClient.JdtlsClasspathContainersDetectedNotification.type, param => {
+            this.emitter.emit('jdtlsClasspathContainersDetected', param);
+        });
+
         this.connection.onNotification(Messages.Client.ServerAddedNotification.type, param => {
             this.emitter.emit('serverAdded', param);
         });
@@ -117,6 +121,14 @@ export class Incoming {
 
     removeOnJdtlsJreContainersDetected(listener: (arg: Protocol.JreContainerMappings) => void): void {
         this.emitter.removeListener('jdtlsJreContainersDetected', listener);
+    }
+
+    onJdtlsClasspathContainersDetected(listener: (arg: Protocol.ClasspathContainerMappings) => void): void {
+        this.emitter.on('jdtlsClasspathContainersDetected', listener);
+    }
+
+    removeOnJdtlsClasspathContainersDetected(listener: (arg: Protocol.ClasspathContainerMappings) => void): void {
+        this.emitter.removeListener('jdtlsClasspathContainersDetected', listener);
     }
 
     onServerAdded(listener: (arg: Protocol.ServerHandle) => void): void {
