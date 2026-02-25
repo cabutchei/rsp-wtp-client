@@ -254,6 +254,7 @@ export namespace Protocol {
 
     
     export interface DeployableReference {
+        id: string;
         label: string;
         path: string;
         typeId?: string;

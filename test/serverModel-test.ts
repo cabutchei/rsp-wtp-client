@@ -80,6 +80,7 @@ describe('Sever Model Utility', () => {
     }
 
     const deployableReference: Protocol.DeployableReference = {
+        id: 'deployable-id',
         label: 'deployable-label',
         path: '/path/to/deployable'
     };

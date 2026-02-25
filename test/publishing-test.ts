@@ -54,6 +54,7 @@ describe('Publishing', () => {
     }
 
     const deployableReference: Protocol.DeployableReference = {
+        id: 'deployable-id',
         label: 'deployable-label',
         path: '/path/to/deployable'
     };
