@@ -232,6 +232,24 @@ export namespace Protocol {
     export interface DidChangeWorkspaceFoldersParams {
         event: WorkspaceFoldersChangeEvent;
     }
+
+    export interface InitializeParams {
+        workspaceFolders: WorkspaceFolder[];
+    }
+
+    export interface FileEvent {
+        uri: string;
+        type: number;
+    }
+
+    export interface DidChangeWatchedFilesParams {
+        changes: FileEvent[];
+    }
+
+    export interface InitializeResult {
+        status: Status;
+        watchPatterns: string[];
+    }
     
     export interface WorkflowResponseItem {
         id: string;

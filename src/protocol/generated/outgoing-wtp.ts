@@ -18,6 +18,11 @@ export class OutgoingWTP {
         this.connection = connection;
     }
 
+    initialize(param: Protocol.InitializeParams, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.InitializeResult> {
+        return Common.sendSimpleRequest(this.connection, Messages.WTPServer.InitializeRequest.type,
+            param, timeout, ErrorMessagesWTP.INITIALIZE_TIMEOUT);
+    }
+
     startModule(param: Protocol.ServerDeployableReference, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.Status> {
         return Common.sendSimpleRequest(this.connection, Messages.WTPServer.StartModuleRequest.type,
             param, timeout, ErrorMessagesWTP.STARTMODULE_TIMEOUT);
@@ -66,12 +71,17 @@ export class OutgoingWTP {
     didChangeWorkspaceFolders(param: Protocol.DidChangeWorkspaceFoldersParams, timeout: number = Common.DEFAULT_TIMEOUT): void {
         return Common.sendSimpleNotification(this.connection, Messages.WTPServer.DidChangeWorkspaceFoldersNotification.type, param);
     }
+
+    didChangeWatchedFiles(param: Protocol.DidChangeWatchedFilesParams, timeout: number = Common.DEFAULT_TIMEOUT): void {
+        return Common.sendSimpleNotification(this.connection, Messages.WTPServer.DidChangeWatchedFilesNotification.type, param);
+    }
 }
 
 /**
  * WTP Error messages
  */
 export namespace ErrorMessagesWTP {
+    export const INITIALIZE_TIMEOUT = 'Failed to initialize workspace in time';
     export const STARTMODULE_TIMEOUT = 'Failed to start module in time';
     export const STOPMODULE_TIMEOUT = 'Failed to stop module in time';
     export const GETMODULESTATES_TIMEOUT = 'Failed to get module states in time';

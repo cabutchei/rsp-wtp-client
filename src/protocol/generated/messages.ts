@@ -378,6 +378,13 @@ export namespace Messages {
     }
     export namespace WTPServer {
         /**
+         * The `wtpServer/initialize` request is sent by the client to
+         * initialize workspace folders and bootstrap workspace-specific behavior.
+         */
+        export namespace InitializeRequest {
+            export const type = new RequestType<Protocol.InitializeParams, Protocol.InitializeResult, void, void>('wtpServer/initialize');
+        }
+        /**
          * The `wtpServer/getDeployableResources` request is sent by the client to
          * fetch a list of deployable resources from the current workspace.
          */
@@ -425,6 +432,13 @@ export namespace Messages {
          */
         export namespace DidChangeWorkspaceFoldersNotification {
             export const type = new NotificationType<Protocol.DidChangeWorkspaceFoldersParams, void>('wtpServer/didChangeWorkspaceFolders');
+        }
+        /**
+         * The `wtpServer/didChangeWatchedFiles` notification is sent by the client
+         * to inform the server about watched-file changes.
+         */
+        export namespace DidChangeWatchedFilesNotification {
+            export const type = new NotificationType<Protocol.DidChangeWatchedFilesParams, void>('wtpServer/didChangeWatchedFiles');
         }
         /**
          * The `wtpServer/startModule` request is sent by the client to the server to
