@@ -1,6 +1,6 @@
 {
   "name": "rsp-wtp-client",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Client Implementation of Runtime Server Protocol extended with WTP capabilities",
   "main": "lib/src/main.js",
   "types": "lib/src/main.d.ts",
