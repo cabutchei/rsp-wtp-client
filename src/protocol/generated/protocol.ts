@@ -169,6 +169,13 @@ export namespace Protocol {
         projectName?: string;
     }
 
+    export interface ExportEarRequest {
+        path: string;
+        projectName?: string;
+        destinationPath: string;
+        exportSource: boolean;
+    }
+
     export interface DeploymentAssemblyUpdateRequest {
         path: string;
         projectName?: string;

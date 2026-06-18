@@ -406,6 +406,13 @@ export namespace Messages {
             export const type = new RequestType<void, Protocol.Status, void, void>('wtpServer/refreshWorkspaceProjects');
         }
         /**
+         * The `wtpServer/exportEar` request is sent by the client to
+         * materialize an EAR archive for a workspace project.
+         */
+        export namespace ExportEarRequest {
+            export const type = new RequestType<Protocol.ExportEarRequest, Protocol.Status, void, void>('wtpServer/exportEar');
+        }
+        /**
          * The `wtpServer/listDeploymentAssemblyProjects` request is sent by the client to
          * fetch a filtered list of projects that can be added to a deployment assembly.
          */
