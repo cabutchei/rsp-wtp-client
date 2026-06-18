@@ -399,6 +399,13 @@ export namespace Messages {
             export const type = new RequestType<void, Protocol.ListWorkspaceProjectsResponse, void, void>('wtpServer/listWorkspaceProjects');
         }
         /**
+         * The `wtpServer/refreshWorkspaceProjects` request is sent by the client to
+         * force a rescan/import of workspace projects and refresh them from disk.
+         */
+        export namespace RefreshWorkspaceProjectsRequest {
+            export const type = new RequestType<void, Protocol.Status, void, void>('wtpServer/refreshWorkspaceProjects');
+        }
+        /**
          * The `wtpServer/listDeploymentAssemblyProjects` request is sent by the client to
          * fetch a filtered list of projects that can be added to a deployment assembly.
          */

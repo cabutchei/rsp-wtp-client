@@ -48,6 +48,11 @@ export class OutgoingWTP {
             null, timeout, ErrorMessagesWTP.LISTWORKSPACEPROJECTS_TIMEOUT);
     }
 
+    refreshWorkspaceProjects(timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.Status> {
+        return Common.sendSimpleRequest(this.connection, Messages.WTPServer.RefreshWorkspaceProjectsRequest.type,
+            null, timeout, ErrorMessagesWTP.REFRESHWORKSPACEPROJECTS_TIMEOUT);
+    }
+
     listDeploymentAssemblyProjects(param: Protocol.DeploymentAssemblyRequest, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListWorkspaceProjectsResponse> {
         return Common.sendSimpleRequest(this.connection, Messages.WTPServer.ListDeploymentAssemblyProjectsRequest.type,
             param, timeout, ErrorMessagesWTP.LISTDEPLOYMENTASSEMBLYPROJECTS_TIMEOUT);
@@ -87,6 +92,7 @@ export namespace ErrorMessagesWTP {
     export const GETMODULESTATES_TIMEOUT = 'Failed to get module states in time';
     export const GETDEPLOYABLERESOURCES_TIMEOUT = 'Failed to get deployable resources in time';
     export const LISTWORKSPACEPROJECTS_TIMEOUT = 'Failed to list workspace projects in time';
+    export const REFRESHWORKSPACEPROJECTS_TIMEOUT = 'Failed to refresh workspace projects in time';
     export const LISTDEPLOYMENTASSEMBLYPROJECTS_TIMEOUT = 'Failed to list deployment assembly projects in time';
     export const GETDEPLOYMENTASSEMBLY_TIMEOUT = 'Failed to get deployment assembly in time';
     export const ADDDEPLOYMENTASSEMBLYENTRY_TIMEOUT = 'Failed to add deployment assembly entry in time';
