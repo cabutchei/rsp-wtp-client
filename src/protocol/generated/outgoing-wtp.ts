@@ -53,6 +53,11 @@ export class OutgoingWTP {
             null, timeout, ErrorMessagesWTP.REFRESHWORKSPACEPROJECTS_TIMEOUT);
     }
 
+    listEarProjects(timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.ListWorkspaceProjectsResponse> {
+        return Common.sendSimpleRequest(this.connection, Messages.WTPServer.ListEarProjectsRequest.type,
+            null, timeout, ErrorMessagesWTP.LISTEARPROJECTS_TIMEOUT);
+    }
+
     exportEar(param: Protocol.ExportEarRequest, timeout: number = Common.DEFAULT_TIMEOUT): Promise<Protocol.Status> {
         return Common.sendSimpleRequest(this.connection, Messages.WTPServer.ExportEarRequest.type,
             param, timeout, ErrorMessagesWTP.EXPORTEAR_TIMEOUT);
@@ -98,6 +103,7 @@ export namespace ErrorMessagesWTP {
     export const GETDEPLOYABLERESOURCES_TIMEOUT = 'Failed to get deployable resources in time';
     export const LISTWORKSPACEPROJECTS_TIMEOUT = 'Failed to list workspace projects in time';
     export const REFRESHWORKSPACEPROJECTS_TIMEOUT = 'Failed to refresh workspace projects in time';
+    export const LISTEARPROJECTS_TIMEOUT = 'Failed to list EAR projects in time';
     export const EXPORTEAR_TIMEOUT = 'Failed to export EAR in time';
     export const LISTDEPLOYMENTASSEMBLYPROJECTS_TIMEOUT = 'Failed to list deployment assembly projects in time';
     export const GETDEPLOYMENTASSEMBLY_TIMEOUT = 'Failed to get deployment assembly in time';
