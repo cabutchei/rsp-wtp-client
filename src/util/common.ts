@@ -28,6 +28,9 @@ export class Common {
             return connection.sendRequest(messageType, payload).then(result => {
                 clearTimeout(timer);
                 resolve(result);
+            }, err => {
+                clearTimeout(timer);
+                reject(err);
             });
         });
     }
@@ -56,7 +59,7 @@ export class Common {
                 if (listener(params)) {
                     response.then(() => {
                         clearTimeout(timer);
-                        emitter.removeListener(eventId, listener);
+                        emitter.removeListener(eventId, handler);
                         resolve(params);
                     });
                 }
@@ -64,6 +67,11 @@ export class Common {
 
             emitter.prependListener(eventId, handler);
             response = connection.sendRequest(messageType, payload);
+            response.then(() => undefined, err => {
+                clearTimeout(timer);
+                emitter.removeListener(eventId, handler);
+                reject(err);
+            });
         });
     }
 
