@@ -635,23 +635,4 @@ export namespace Messages {
             export const type = new NotificationType<Protocol.JobProgress, void>('client/jobChanged');
         }
     }
-    /**
-     * WTP Client methods
-     */
-    export namespace WTPClient {
-        /**
-         * The `client/jdtlsJreContainersDetected` notification is sent by the server
-         * when non-standard JRE containers are detected and resolved to VM installs.
-         */
-        export namespace JdtlsJreContainersDetectedNotification {
-            export const type = new NotificationType<Protocol.JreContainerMappings, void>('wtpClient/jdtlsJreContainersDetected');
-        }
-        /**
-         * The `client/jdtlsClasspathContainersDetected` notification is sent by the server
-         * when classpath containers are detected and resolved to entries.
-         */
-        export namespace JdtlsClasspathContainersDetectedNotification {
-            export const type = new NotificationType<Protocol.ClasspathContainerMappings, void>('wtpClient/jdtlsClasspathContainersDetected');
-        }
-    }
 }

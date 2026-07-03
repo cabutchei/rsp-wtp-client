@@ -188,39 +188,6 @@ export namespace Protocol {
         open: boolean;
     }
 
-    export interface JreContainerMapping {
-        projectName: string;
-        projectUri: string;
-        containerPath: string;
-        vmName: string;
-        javaHome: string;
-    }
-
-    export interface JreContainerMappings {
-        mappings: JreContainerMapping[];
-    }
-
-    export interface ClasspathContainerEntry {
-        entryKind: number;
-        path: string;
-        sourcePath?: string;
-        sourceRootPath?: string;
-        javadocLocation?: string;
-        exported: boolean;
-    }
-
-    export interface ClasspathContainerMapping {
-        projectName: string;
-        projectUri: string;
-        containerPath: string;
-        description?: string;
-        entries: ClasspathContainerEntry[];
-    }
-
-    export interface ClasspathContainerMappings {
-        mappings: ClasspathContainerMapping[];
-    }
-
     export interface ListWorkspaceProjectsResponse {
         projects: WorkspaceProject[];
         status: Status;
