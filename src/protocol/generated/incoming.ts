@@ -77,6 +77,10 @@ export class Incoming {
             this.emitter.emit('jobChanged', param);
         });
 
+        this.connection.onNotification(Messages.WTPClient.WatchPatternsChangedNotification.type, param => {
+            this.emitter.emit('watchPatternsChanged', param);
+        });
+
     }
 
     onPromptString(listener: (arg: Protocol.StringPrompt) => Promise<string>): void {
@@ -185,5 +189,13 @@ export class Incoming {
 
     removeOnJobChanged(listener: (arg: Protocol.JobProgress) => void): void {
         this.emitter.removeListener('jobChanged', listener);
+    }
+
+    onWatchPatternsChanged(listener: (arg: Protocol.WatchPatternsChangedParams) => void): void {
+        this.emitter.on('watchPatternsChanged', listener);
+    }
+
+    removeOnWatchPatternsChanged(listener: (arg: Protocol.WatchPatternsChangedParams) => void): void {
+        this.emitter.removeListener('watchPatternsChanged', listener);
     }
 }

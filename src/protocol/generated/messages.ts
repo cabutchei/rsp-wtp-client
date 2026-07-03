@@ -484,6 +484,18 @@ export namespace Messages {
         }
     }
     /**
+     * WTP client methods
+     */
+    export namespace WTPClient {
+        /**
+         * The `wtpClient/watchPatternsChanged` notification is sent by the server
+         * to update the client's active workspace watch list.
+         */
+        export namespace WatchPatternsChangedNotification {
+            export const type = new NotificationType<Protocol.WatchPatternsChangedParams, void>('wtpClient/watchPatternsChanged');
+        }
+    }
+    /**
      * Client methods
      */
     export namespace Client {

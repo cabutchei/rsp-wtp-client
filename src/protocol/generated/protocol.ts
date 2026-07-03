@@ -220,6 +220,11 @@ export namespace Protocol {
         changes: FileEvent[];
     }
 
+    export interface WatchPatternsChangedParams {
+        added: string[];
+        removed: string[];
+    }
+
     export interface InitializeResult {
         status: Status;
         watchPatterns: string[];
