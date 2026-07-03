@@ -44,6 +44,10 @@ export class RSPWTPClient {
      * @param timeout operation timeout in milliseconds, default 2000 ms
      */
     connect(timeout: number = Common.DEFAULT_TIMEOUT): Promise<void> {
+        return this.connectWithTrace(timeout);
+    }
+
+    connectWithTrace(timeout: number = Common.DEFAULT_TIMEOUT, traceCallback?: (message: string) => void): Promise<void> {
         return new Promise((resolve, reject) => {
             console.debug(`RSPWTPClient: connecting to ${this.host}:${this.port}`);
             const timer = setTimeout(() => {
@@ -62,7 +66,12 @@ export class RSPWTPClient {
                     new rpc.StreamMessageWriter(this.socket));
                 if (this.connection.trace) {
                     this.connection.trace(rpc.Trace.Verbose, {log: (message: string, data?: string) => {
-                        console.log(`Message=${message} data=${data}`);
+                        const formatted = data && data.length > 0 ? `${message}\n${data}` : message;
+                        if (traceCallback) {
+                            traceCallback(formatted);
+                            return;
+                        }
+                        console.log(formatted);
                     }});
                 }
 
