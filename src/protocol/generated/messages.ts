@@ -494,6 +494,20 @@ export namespace Messages {
         export namespace WatchPatternsChangedNotification {
             export const type = new NotificationType<Protocol.WatchPatternsChangedParams, void>('wtpClient/watchPatternsChanged');
         }
+        /**
+         * The `wtpClient/serverPublishStarted` notification is sent by the server
+         * when WTP begins publishing a server.
+         */
+        export namespace ServerPublishStartedNotification {
+            export const type = new NotificationType<Protocol.ServerHandle, void>('wtpClient/serverPublishStarted');
+        }
+        /**
+         * The `wtpClient/serverPublishFinished` notification is sent by the server
+         * when WTP finishes publishing a server.
+         */
+        export namespace ServerPublishFinishedNotification {
+            export const type = new NotificationType<Protocol.ServerHandle, void>('wtpClient/serverPublishFinished');
+        }
     }
     /**
      * Client methods

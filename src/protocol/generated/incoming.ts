@@ -81,6 +81,14 @@ export class Incoming {
             this.emitter.emit('watchPatternsChanged', param);
         });
 
+        this.connection.onNotification(Messages.WTPClient.ServerPublishStartedNotification.type, param => {
+            this.emitter.emit('serverPublishStarted', param);
+        });
+
+        this.connection.onNotification(Messages.WTPClient.ServerPublishFinishedNotification.type, param => {
+            this.emitter.emit('serverPublishFinished', param);
+        });
+
     }
 
     onPromptString(listener: (arg: Protocol.StringPrompt) => Promise<string>): void {
@@ -197,5 +205,21 @@ export class Incoming {
 
     removeOnWatchPatternsChanged(listener: (arg: Protocol.WatchPatternsChangedParams) => void): void {
         this.emitter.removeListener('watchPatternsChanged', listener);
+    }
+
+    onServerPublishStarted(listener: (arg: Protocol.ServerHandle) => void): void {
+        this.emitter.on('serverPublishStarted', listener);
+    }
+
+    removeOnServerPublishStarted(listener: (arg: Protocol.ServerHandle) => void): void {
+        this.emitter.removeListener('serverPublishStarted', listener);
+    }
+
+    onServerPublishFinished(listener: (arg: Protocol.ServerHandle) => void): void {
+        this.emitter.on('serverPublishFinished', listener);
+    }
+
+    removeOnServerPublishFinished(listener: (arg: Protocol.ServerHandle) => void): void {
+        this.emitter.removeListener('serverPublishFinished', listener);
     }
 }
