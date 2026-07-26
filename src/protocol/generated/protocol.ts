@@ -362,6 +362,7 @@ export namespace Protocol {
     export interface JobProgress {
         percent: number;
         handle: JobHandle;
+        message?: string;
     }
     
     export interface ServerDeployableReference {
